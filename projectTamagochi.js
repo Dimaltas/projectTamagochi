@@ -1,3 +1,53 @@
+// comment on merge conflict
+import inquirer from "inquirer";
+import question from "./something/questions.js";
+import PetStats from "./something/petStats.js";
+let pet;
+const init = () => {
+    inquirer
+        .prompt(question)
+        .then ((answers) => {
+            pet = new PetStats (answers.petType, answers.petName);
+        })
+        .then (() => animal())
+} 
+const animal = () => {
+    console.log("Hello");
+    
+    inquirer
+            .prompt([
+                {
+                    type: "rawlist",
+                    name: "action",
+                    message: "Would you like to eat, drink, fun, send you pet to the toilet or check your pet stats?",
+                    choices: ["Feed", "Hydrate", "Play", "Relief", "Stats"],
+                },
+            ])
+            .then((answers) => {
+                if (answers.action === "Feed") {
+                    pet.eat();
+                    console.log(`${pet.name} is eating`)
+                    console.log("pet hunger", pet.hunger)
+                }
+                else if (answers.action === "Hydrate") {
+                    pet.drink();
+                    console.log(`${pet.name} is driking`)
+                }
+                else if (answers.action === "Play") {
+                    pet.fun();
+                    console.log(`${pet.name} is playing`)
+                }
+                else if (answers.action === "Relief"){
+                    pet.reliefs();
+                    console.log(`${pet.name} just used the potty`)
+                }
+                else if (answers.action === "Stats") {
+                    console.table(pet)
+                }
+            })
+            .then(() => animal())
+}
+init();
 
 
 
