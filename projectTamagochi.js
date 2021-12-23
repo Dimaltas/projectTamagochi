@@ -1,87 +1,94 @@
 import inquirer from "inquirer";
 import question from "./something/questions.js";
-import petStats from "./something/petStats.js";
-//this is a comment
+import PetStats from "./something/petStats.js";
+let pet;
 const init = () => {
     inquirer
         .prompt(question)
         .then ((answers) => {
-            pet = new petStats (answers.petType, answers.petName);
+            pet = new PetStats (answers.petType, answers.petName);
         })
-        .then (() => Animal())
+        .then (() => animal())
 } 
-const Animal = () => {
+const animal = () => {
     console.log("Hello");
+    
     inquirer
             .prompt([
                 {
                     type: "rawlist",
                     name: "action",
-                    message: "Would you like to feed, hydrate, play, send you pet to the toilet or check your pet stats?",
+                    message: "Would you like to eat, drink, fun, send you pet to the toilet or check your pet stats?",
                     choices: ["Feed", "Hydrate", "Play", "Relief", "Stats"],
                 },
             ])
             .then((answers) => {
                 if (answers.action === "Feed") {
-                    pet.feed()
+                    pet.eat();
                     console.log(`${pet.name} is eating`)
+                    console.log("pet hunger", pet.hunger)
                 }
                 else if (answers.action === "Hydrate") {
-                    pet.hydrate
+                    pet.drink();
                     console.log(`${pet.name} is driking`)
                 }
                 else if (answers.action === "Play") {
-                    pet.play()
+                    pet.fun();
                     console.log(`${pet.name} is playing`)
                 }
                 else if (answers.action === "Relief"){
-                    pet.relief
+                    pet.reliefs();
                     console.log(`${pet.name} just used the potty`)
                 }
-                else if (answers.action === "Check") {
+                else if (answers.action === "Stats") {
                     console.table(pet)
                 }
             })
-            .then(() => Animal())
+            .then(() => animal())
 }
-init()
-class Dog extends Animal{
-    constructor(name, age){
-        super(name, age)
-    }
-    sit = 0;
-    stand = 0;
-    roll = 0;
-    sits(){
-        pet.sit++;
-    }
-    stands(){
-        pet.stand++;
-    }
-    rolls(){
-        pet.roll++;
-    }
-}
-class Cat extends Animal{
-    constructor(name, age){
-        super(name, age);
-    }
-    energy = 10; 
-    sleeps(){
-        pet.energy++;                        //whey fun increases laziness decreases and vice versa
-        pet.thirst--;
-        pet.hunger--;
-    }
-}
-class Rabbit extends Animal{
-    constructor(name, age){
-        super(name, age),
-        pet.hops = 0
-    }
-    hopCounter(){
-        pet.hops++;                            
-    }
-}
+init();
+
+
+
+
+
+// class Dog extends Animal{
+//     constructor(name, age){
+//         super(name, age)
+//     }
+//     sit = 0;
+//     stand = 0;
+//     roll = 0;
+//     sits(){
+//         pet.sit++;
+//     }
+//     stands(){
+//         pet.stand++;
+//     }
+//     rolls(){
+//         pet.roll++;
+//     }
+// }
+// class Cat extends Animal{
+//     constructor(name, age){
+//         super(name, age);
+//     }
+//     energy = 10; 
+//     sleeps(){
+//         pet.energy++;                        //whey fun increases laziness decreases and vice versa
+//         pet.thirst--;
+//         pet.hunger--;
+//     }
+// }
+// class Rabbit extends Animal{
+//     constructor(name, age){
+//         super(name, age),
+//         pet.hops = 0
+//     }
+//     hopCounter(){
+//         pet.hops++;                            
+//     }
+// }
 // let poo = new Rabbit("Poo",2);
 
 // poo.eat();
