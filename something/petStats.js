@@ -1,4 +1,4 @@
-class petStats{
+class PetStats{
     constructor(name, age){
         this.name = name,
         this.age = age,
@@ -30,4 +30,4 @@ class petStats{
         this.thirst--;
     }   
 }
-export default petStats;
+export default PetStats;
