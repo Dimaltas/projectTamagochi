@@ -1,26 +1,10 @@
 import inquirer from "inquirer";
 import question from "./something/questions.js";
 import petStats from "./something/petStats.js";
-
+//this is a comment
 const init = () => {
     inquirer
-        .prompt([
-            {
-                type: "list",
-                name: "petType",
-                message: "Plese choose a pet",
-                choices: [
-                    "Dog",
-                    "Cat",
-                    "Rabbit",
-                ]
-            },
-            {
-                type: "input",
-                name: "petName",
-                message: "What's the name of your pet?"
-            }
-         ])
+        .prompt(question)
         .then ((answers) => {
             pet = new petStats (answers.petType, answers.petName);
         })
