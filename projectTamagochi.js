@@ -1,3 +1,4 @@
+// comment on merge conflict
 import inquirer from "inquirer";
 import question from "./something/questions.js";
 import PetStats from "./something/petStats.js";
